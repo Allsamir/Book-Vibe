@@ -45,7 +45,7 @@ const Home: React.FC = () => {
 
       <div className="books">
         <h1 className="text-center text-black text-4xl font-bold">Books</h1>
-        <div className="mt-12 mb-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-12 mb-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 grid-flow-row">
           {dataOfBooks.map((book) => (
             <Book key={book.bookId} book={book} />
           ))}

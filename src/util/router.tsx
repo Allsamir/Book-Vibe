@@ -4,6 +4,7 @@ import Home from "../components/Home/Home.tsx";
 import ListedBooks from "../components/Listed-Bools/ListedBooks.tsx";
 import PagesToRead from "../components/Pages-To-Read/PagesToRead.tsx";
 import ErrorElement from "../components/ErrorElement.tsx";
+import BookDetails from "../components/BookDetails.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       },
       { path: "/listed-books", element: <ListedBooks /> },
       { path: "/pages-to-read", element: <PagesToRead /> },
+      { path: "/books/:bookID", element: <BookDetails /> },
     ],
     errorElement: <ErrorElement />,
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import { CiStar } from "react-icons/ci";
 
 interface ChildProps {
   book: {
@@ -31,7 +32,7 @@ const Book: React.FC<ChildProps> = ({ book }) => {
         {book.tags.map((tag, index) => (
           <span
             key={index}
-            className="bg-[#f3f3f3] rounded-full py-[0.44rem] px-4 text-green-600 text-base font-work"
+            className="bg-[#f3f3f3] rounded-full py-[0.44rem] px-4 text-green-400 text-base font-work"
           >
             {tag}
           </span>
@@ -42,6 +43,18 @@ const Book: React.FC<ChildProps> = ({ book }) => {
       <p className="text-base font-work font-normal text-black">
         By : {book.author}
       </p>
+
+      <hr className="my-6 border-dashed border border-[rgba(19, 19, 19, 0.15)]" />
+
+      <div className="flex justify-between items-center">
+        <span className="text-base font-work font-normal text-black">
+          {book.category}
+        </span>
+        <span className="flex items-center text-xl font-work font-normal text-black">
+          <CiStar />
+          {book.rating}
+        </span>
+      </div>
     </div>
   );
 };
