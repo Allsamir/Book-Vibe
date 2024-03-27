@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: white !important;
+}
+
+a.active {
+  border: 1px solid #23be0a;
+  background-color: white;
+  color: #23be0a;
+  padding: 0.88rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
