@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, useLoaderData } from "react-router-dom";
+import { saveDataToLocalStorage } from "../util/manageLocalStorage";
 
 interface Books {
   bookId: number;
@@ -21,6 +22,11 @@ const BookDetails: React.FC = () => {
   const book = bookID
     ? books.find((book) => book.bookId === parseInt(bookID))
     : undefined;
+
+  const handleData = (key: string) => {
+    saveDataToLocalStorage(key, book as Books);
+    saveDataToLocalStorage(key, book as Books);
+  };
 
   if (!book)
     return (
@@ -89,10 +95,20 @@ const BookDetails: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <button className="btn btn-outline text-base-200 rounded-lg font-work mr-4 text-lg">
+        <button
+          onClick={() => {
+            handleData("readingList");
+          }}
+          className="btn btn-outline text-base-200 rounded-lg font-work mr-4 text-lg"
+        >
           Read
         </button>
-        <button className="btn text-white bg-sky-400 rounded-lg border-none font-work mr-4 text-lg">
+        <button
+          onClick={() => {
+            handleData("wishList");
+          }}
+          className="btn text-white bg-sky-400 rounded-lg border-none font-work mr-4 text-lg"
+        >
           Wishlist
         </button>
       </div>
