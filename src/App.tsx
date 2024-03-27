@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { useNavigation } from "react-router-dom";
 function App() {
+  const navigation = useNavigation();
   return (
     <>
       <div className="navbar font-work">
@@ -52,7 +54,13 @@ function App() {
       </div>
 
       <div className="container mx-auto px-4">
-        <Outlet />
+        {navigation.state === "loading" ? (
+          <div className="text-center">
+            <span className="loading loading-bars loading-lg"></span>
+          </div>
+        ) : (
+          <Outlet />
+        )}
       </div>
     </>
   );

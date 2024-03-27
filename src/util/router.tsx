@@ -14,12 +14,43 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () =>
-          fetch("https://allsamir.github.io/books.json.host/books.json"),
+        loader: async () => {
+          try {
+            const response = await fetch(
+              "https://allsamir.github.io/books.json.host/books.json"
+            );
+            if (!response.ok) {
+              throw new Error("Failed to Fetch Data");
+            }
+            const data = await response.json();
+            return data;
+          } catch (err) {
+            console.error(err);
+            return null;
+          }
+        },
       },
       { path: "/listed-books", element: <ListedBooks /> },
       { path: "/pages-to-read", element: <PagesToRead /> },
-      { path: "/books/:bookID", element: <BookDetails /> },
+      {
+        path: "/books/:bookID",
+        element: <BookDetails />,
+        loader: async () => {
+          try {
+            const response = await fetch(
+              "https://allsamir.github.io/books.json.host/books.json"
+            );
+            if (!response.ok) {
+              throw new Error("Failed to fetch data");
+            }
+            const data = await response.json();
+            return data; // Return the fetched data
+          } catch (error) {
+            console.error(error);
+            return null; // Return null in case of error
+          }
+        },
+      },
     ],
     errorElement: <ErrorElement />,
   },
