@@ -19,7 +19,6 @@ interface Books {
 
 const Home: React.FC = () => {
   const dataOfBooks = useLoaderData() as Books[];
-  console.log(dataOfBooks);
   return (
     <>
       <div className="mt-14 mb-24">
