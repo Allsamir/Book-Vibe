@@ -8,26 +8,11 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
-  Tooltip,
 } from "recharts";
 
-interface Books {
-  bookId: number;
-  bookName: string;
-  author: string;
-  image: string;
-  review: string;
-  totalPages: number;
-  rating: number;
-  category: number;
-  tags: string[];
-  publisher: string;
-  yearOfPublishing: number;
-}
+const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
-const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "purple"];
-
-const getPath = (x: string, y: string, width: number, height: number) => {
+const getPath = (x, y, width, height) => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${
     y + height / 3
   }
@@ -38,20 +23,24 @@ const getPath = (x: string, y: string, width: number, height: number) => {
   Z`;
 };
 
-const TriangleBar = (props) => {
-  const { fill, x, y, width, height } = props;
-
+const TriangleBar = ({
+  fill,
+  x,
+  y,
+  width,
+  height,
+}) => {
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
-const PagesToRead: React.FC = () => {
-  const data: Books[] = getDataFromLocalStorage("readingList");
+const PagesToRead = () => {
+  const data = getDataFromLocalStorage("readingList");
 
   return (
-    <div className="w-full bg-slate-100 py-28 rounded-2xl mt-12 h-screen font-work">
+    <div className="w-full bg-slate-100 py-28 rounded-2xl mt-12 h-screen">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
+          width={1200}
           height={500}
           data={data}
           margin={{
@@ -64,14 +53,13 @@ const PagesToRead: React.FC = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="bookName" />
           <YAxis />
-          <Tooltip />
           <Bar
             dataKey="totalPages"
             fill="#8884d8"
             shape={<TriangleBar />}
             label={{ position: "top" }}
           >
-            {data.map((entry, index) => (
+            {data.map((_, index) => (
               <Cell key={`cell-${index}`} fill={colors[index % 20]} />
             ))}
           </Bar>
@@ -81,4 +69,4 @@ const PagesToRead: React.FC = () => {
   );
 };
 
-export default PagesToRead;
+export default PagesToRead

@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App.tsx";
 import Home from "../components/Home/Home.tsx";
 import ListedBooks from "../components/Listed-Bools/ListedBooks.tsx";
-import PagesToRead from "../components/Pages-To-Read/PagesToRead.tsx";
 import ErrorElement from "../components/ErrorElement.tsx";
+// @ts-expect-error bea
+import PagesToRead from "../components/Pages-To-Read/PagesToRead.jsx";
 import BookDetails from "../components/BookDetails.tsx";
 import About from "../components/About/About.tsx";
 import Contact from "../components/Contact/Contact.tsx";
