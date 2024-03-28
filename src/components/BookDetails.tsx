@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useLoaderData } from "react-router-dom";
+import { useParams, useLoaderData, Link } from "react-router-dom";
 import { saveDataToLocalStorage } from "../util/manageLocalStorage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,13 +53,13 @@ const BookDetails: React.FC = () => {
     );
 
     if (isDataExitsInWishList) {
-      toast.warning("Already exists in Wish List !", {
+      toast.warning("Already exists in Wishlist !", {
         position: "top-right",
       });
     } else {
       if (isDataExitsInReadingList) {
         toast.warning(
-          "You have already read this book enable to add in Wish List !",
+          "You have already read this book enable to add in Wishlist !",
           {
             position: "top-right",
           }
@@ -157,6 +157,12 @@ const BookDetails: React.FC = () => {
         >
           Wishlist
         </button>
+
+        <Link to={`/`}>
+          <button className="btn text-white bg-green-400 rounded-lg border-none font-work mr-4 text-lg">
+            Back
+          </button>
+        </Link>
       </div>
       <ToastContainer />
     </div>
