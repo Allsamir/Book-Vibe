@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams, useLoaderData } from "react-router-dom";
 import { saveDataToLocalStorage } from "../util/manageLocalStorage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Books {
   bookId: number;
@@ -23,9 +25,53 @@ const BookDetails: React.FC = () => {
     ? books.find((book) => book.bookId === parseInt(bookID))
     : undefined;
 
-  const handleData = (key: string) => {
-    saveDataToLocalStorage(key, book as Books);
-    saveDataToLocalStorage(key, book as Books);
+  const handleDataOfReadingList = (key: string) => {
+    const [isDataExitsInReadingList, dataOfReadingList] =
+      saveDataToLocalStorage(key, book as Books);
+
+    if (isDataExitsInReadingList) {
+      toast.warning("Already exists in Reading List !", {
+        position: "top-right",
+      });
+    } else {
+      dataOfReadingList.push(book);
+      localStorage.setItem(key, JSON.stringify(dataOfReadingList));
+      toast.success("Added to Reading List !", {
+        position: "top-right",
+      });
+    }
+  };
+
+  const handleDataOfWishList = (key: string) => {
+    const [isDataExitsInWishList, dataOfWishList] = saveDataToLocalStorage(
+      key,
+      book as Books
+    );
+    const [isDataExitsInReadingList] = saveDataToLocalStorage(
+      "readingList",
+      book as Books
+    );
+
+    if (isDataExitsInWishList) {
+      toast.warning("Already exists in Wish List !", {
+        position: "top-right",
+      });
+    } else {
+      if (isDataExitsInReadingList) {
+        toast.warning(
+          "You have already read this book enable to add in Wish List !",
+          {
+            position: "top-right",
+          }
+        );
+      } else {
+        toast.success("Added to Wish List !", {
+          position: "top-right",
+        });
+        dataOfWishList.push(book);
+        localStorage.setItem(key, JSON.stringify(dataOfWishList));
+      }
+    }
   };
 
   if (!book)
@@ -97,7 +143,7 @@ const BookDetails: React.FC = () => {
         </div>
         <button
           onClick={() => {
-            handleData("readingList");
+            handleDataOfReadingList("readingList");
           }}
           className="btn btn-outline text-base-200 rounded-lg font-work mr-4 text-lg"
         >
@@ -105,13 +151,14 @@ const BookDetails: React.FC = () => {
         </button>
         <button
           onClick={() => {
-            handleData("wishList");
+            handleDataOfWishList("wishList");
           }}
           className="btn text-white bg-sky-400 rounded-lg border-none font-work mr-4 text-lg"
         >
           Wishlist
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

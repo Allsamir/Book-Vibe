@@ -14,4 +14,10 @@ a.active {
   padding: 0.88rem 1.25rem;
   border-radius: 0.5rem;
   font-weight: 600;
+  transition: 0.5s;
+}
+a.active:hover {
+  background-color: #23be0a;
+  color: white;
+  transition: 0.5s;
 }

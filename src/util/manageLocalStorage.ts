@@ -18,13 +18,7 @@ export const saveDataToLocalStorage = (key: string, book: Books) => {
     const dataListData = JSON.parse(dataFromLocalStorage) || [];
 
     const isDataExists = dataListData.find((boi: Books) => boi.bookId === book.bookId)
-
-    if (isDataExists) {
-      alert("Data exists");
-    } else {
-      dataListData.push(book);
-      localStorage.setItem(key, JSON.stringify(dataListData));
-    }
+    return [isDataExists, dataListData]
 }
 
 export const getDataFromLocalStorage = (key: string) => {
