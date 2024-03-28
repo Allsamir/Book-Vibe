@@ -25,7 +25,7 @@ interface Books {
   yearOfPublishing: number;
 }
 
-const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
+const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "purple"];
 
 const getPath = (x: string, y: string, width: number, height: number) => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${
@@ -48,7 +48,7 @@ const PagesToRead: React.FC = () => {
   const data: Books[] = getDataFromLocalStorage("readingList");
 
   return (
-    <div className="w-full bg-slate-100 py-28 rounded-2xl mt-12 h-screen">
+    <div className="w-full bg-slate-100 py-28 rounded-2xl mt-12 h-screen font-work">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}

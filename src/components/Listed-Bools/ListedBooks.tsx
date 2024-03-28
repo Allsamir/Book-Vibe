@@ -19,11 +19,37 @@ interface Books {
 const ListedBooks: React.FC = () => {
   const [dataOfReadingList, setDataOfReadingList] = useState<Books[]>([]);
   const [dataOfWishList, setDataOfWishList] = useState<Books[]>([]);
+  const [sort, setSort] = useState<string>("");
 
   useEffect(() => {
     setDataOfReadingList(getDataFromLocalStorage("readingList"));
     setDataOfWishList(getDataFromLocalStorage("wishList"));
   }, []);
+
+  const handleSort = (option: string) => {
+    setSort(option);
+  };
+
+  const sortedDataOfReadingList =
+    sort === "rating"
+      ? [...dataOfReadingList].sort((a, b) => b.rating - a.rating)
+      : sort === "pages"
+      ? [...dataOfReadingList].sort((a, b) => b.totalPages - a.totalPages)
+      : sort === "year"
+      ? [...dataOfReadingList].sort(
+          (a, b) => b.yearOfPublishing - a.yearOfPublishing
+        )
+      : dataOfReadingList;
+  const sortedDataOfWishList =
+    sort === "rating"
+      ? [...dataOfWishList].sort((a, b) => b.rating - a.rating)
+      : sort === "pages"
+      ? [...dataOfWishList].sort((a, b) => b.totalPages - a.totalPages)
+      : sort === "year"
+      ? [...dataOfWishList].sort(
+          (a, b) => b.yearOfPublishing - a.yearOfPublishing
+        )
+      : dataOfWishList;
 
   return (
     <div>
@@ -36,18 +62,24 @@ const ListedBooks: React.FC = () => {
           <summary className="m-1 btn bg-green-500 text-white border-none">
             Sort By
           </summary>
-          <ul className="p-2 shadow menu dropdown-content z-[1] bg-green-500 text-white rounded-box w-52">
+          <ul className="p-2 shadow menu dropdown-content z-[1] bg-white text-green-500 rounded-box w-52">
             <li>
-              <a>Item 1</a>
+              <a onClick={() => handleSort("rating")}>Rating </a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a onClick={() => handleSort("pages")}>Number of pages</a>
+            </li>
+            <li>
+              <a onClick={() => handleSort("year")}>Publishing Year</a>
             </li>
           </ul>
         </details>
       </div>
 
-      <TabsOfRW readingList={dataOfReadingList} wishList={dataOfWishList} />
+      <TabsOfRW
+        readingList={sortedDataOfReadingList}
+        wishList={sortedDataOfWishList}
+      />
     </div>
   );
 };
