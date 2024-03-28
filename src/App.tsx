@@ -25,11 +25,13 @@ function App() {
             </div>
             <ul
               tabIndex={0}
-              className="gap-y-12 items-center menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 text-black"
+              className="gap-y-12 items-center menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 text-black bg-slate-200"
             >
               <NavLink to={`/`}>Home</NavLink>
               <NavLink to={`/listed-books`}>Listed Books</NavLink>
               <NavLink to={`/pages-to-read`}>Pages to Read</NavLink>
+              <NavLink to={`/about`}>About</NavLink>
+              <NavLink to={`/contact`}>Contact</NavLink>
             </ul>
           </div>
           <a className="btn btn-ghost text-2xl font-bold text-black">
@@ -41,6 +43,8 @@ function App() {
             <NavLink to={`/`}>Home</NavLink>
             <NavLink to={`/listed-books`}>Listed Books</NavLink>
             <NavLink to={`/pages-to-read`}>Pages to Read</NavLink>
+            <NavLink to={`/about`}>About</NavLink>
+            <NavLink to={`/contact`}>Contact</NavLink>
           </ul>
         </div>
         <div className="navbar-end gap-4">

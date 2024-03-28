@@ -5,6 +5,8 @@ import ListedBooks from "../components/Listed-Bools/ListedBooks.tsx";
 import PagesToRead from "../components/Pages-To-Read/PagesToRead.tsx";
 import ErrorElement from "../components/ErrorElement.tsx";
 import BookDetails from "../components/BookDetails.tsx";
+import About from "../components/About/About.tsx";
+import Contact from "../components/Contact/Contact.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
             return null; // Return null in case of error
           }
         },
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
     errorElement: <ErrorElement />,
